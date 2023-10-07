@@ -1,21 +1,32 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
 public class File {
-
-    private Integer fileId;
+    private int fileId;
     private String fileName;
-    private String contentType;
-    private String fileSize;
-    private Integer userId;
+    private String fileType;
+    private long fileSize;
+    private int userId;
+    private byte[] fileData;
 
-    // private Filedata filedata;
+    // Constructors, getters, and setters
 
+    public File() {
+    }
 
-    public Integer getFileId() {
+    public File(int fileId, String fileName, String fileType, long fileSize, int userId, byte[] fileData) {
+        this.fileId = fileId;
+        this.fileName = fileName;
+        this.fileType = fileType;
+        this.fileSize = fileSize;
+        this.userId = userId;
+        this.fileData = fileData;
+    }
+
+    public int getFileId() {
         return fileId;
     }
 
-    public void setFileId(Integer fileId) {
+    public void setFileId(int fileId) {
         this.fileId = fileId;
     }
 
@@ -27,27 +38,35 @@ public class File {
         this.fileName = fileName;
     }
 
-    public String getContentType() {
-        return contentType;
+    public String getFileType() {
+        return fileType;
     }
 
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 
-    public String getFileSize() {
+    public long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(String fileSize) {
+    public void setFileSize(long fileSize) {
         this.fileSize = fileSize;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public byte[] getFileData() {
+        return fileData;
+    }
+
+    public void setFileData(byte[] fileData) {
+        this.fileData = fileData;
     }
 }
