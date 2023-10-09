@@ -39,5 +39,9 @@ public class UserService {
         return userMapper.getUser(username);
     }
 
+    public void deleteUser(Integer userId){
+
+    };
+
 
 }
