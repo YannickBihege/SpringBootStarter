@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public boolean isUsernameAvailable(String username) {
-        return userMapper.getUser(username) == null;
+        return userMapper.getUserByUsername(username) == null;
     }
 
     public int createUser(User user) {
@@ -35,13 +35,23 @@ public class UserService {
         return userMapper.insert(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstName(), user.getLastName()));
     }
 
-    public User getUser(String username) {
-        return userMapper.getUser(username);
+    public User getUserByUsername(String username) {
+        return userMapper.getUserByUsername(username);
     }
 
     public void deleteUser(Integer userId){
 
     };
+
+    public boolean authenticate(String username, String password) {
+        User user = userMapper.getUserByUsername(username);
+
+        if (user != null) {
+            String hashedPassword = hashService.getHashedValue(password, user.getSalt());
+            return hashedPassword.equals(user.getPassword());
+        }
+        return false;
+    }
 
 
 }

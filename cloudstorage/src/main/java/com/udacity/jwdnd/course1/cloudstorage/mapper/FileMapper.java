@@ -11,12 +11,12 @@ public interface FileMapper {
     List<File> getFilesByUserId(Integer userId);
 
     @Select("SELECT * FROM files WHERE fileId = #{fileId}")
-    File getFileById(Integer fileId);
+     File getFileById(Integer fileId);
 
     @Insert("INSERT INTO files (fileName, fileType, fileSize, userId, fileData) " +
             "VALUES (#{fileName}, #{fileType}, #{fileSize}, #{userId}, #{fileData})")
     @Options(useGeneratedKeys = true, keyProperty = "fileId")
-    void insert(File file);
+    int insert(File file);
 
     @Update("UPDATE files SET fileName = #{fileName}, fileType = #{fileType}, " +
             "fileSize = #{fileSize}, userId = #{userId}, fileData = #{fileData} " +

@@ -22,6 +22,9 @@ public class File {
         this.fileData = fileData;
     }
 
+    public File(Integer integer, String fileName, String fileType, long fileSize, int userId, byte[] fileData) {
+    }
+
     public int getFileId() {
         return fileId;
     }
