@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * Controller for receiving requests.
+ * This class needs to be a Spring Component so that Spring can
+ * automatically create instances of it to receive web requests. We use
+ * the @Controller annotation variation of @Component for this purpose.
+ */
 @Controller
 @RequestMapping("/home")
 public class HomeController {
@@ -29,7 +35,8 @@ public class HomeController {
         this.credentialService = credentialService;
     }
 
-    @GetMapping
+
+    @GetMapping("/home")
     public String home(Model model) {
         // You can add any necessary model attributes here
         // Add the necessary data to the model
