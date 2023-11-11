@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * the @Controller annotation variation of @Component for this purpose.
  */
 @Controller
-@RequestMapping("/home")
+//@RequestMapping("/home") // This is the simplest way to do it
 public class HomeController {
     @Autowired
     private FileService fileService;
@@ -36,8 +36,10 @@ public class HomeController {
     }
 
 
-    @GetMapping("/home")
+    //@GetMapping("/home")
+    @RequestMapping("/home")
     public String home(Model model) {
+        model.addAttribute("myvar", "BihegeY File Handler");
         // You can add any necessary model attributes here
         // Add the necessary data to the model
         // model.addAttribute("files", fileService.getAllFiles());

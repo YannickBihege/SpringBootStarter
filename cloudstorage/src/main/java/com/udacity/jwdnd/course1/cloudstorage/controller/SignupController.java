@@ -1,8 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 
-import com.udacity.jwdnd.course1.cloudstorage.dto.SignupDto;
-import com.udacity.jwdnd.course1.cloudstorage.dto.SignupResponseDto;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -10,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller()
-@RequestMapping("/signup")
 public class SignupController {
     private final UserService userService;
 
@@ -18,9 +15,9 @@ public class SignupController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @RequestMapping("/signup")
     public String signupView(@ModelAttribute User user, Model model) {
-        model.addAttribute("user", userService.createUser()); // Assuming you have a User class with firstName, lastName, username, and password properties
+       // model.addAttribute("user", userService.createUser()); // Assuming you have a User class with firstName, lastName, username, and password properties
 
         return "signup";
     }

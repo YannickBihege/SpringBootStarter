@@ -11,6 +11,16 @@
     <body class="p-3 mb-2 bg-light text-black">
         <div class="container">
             <div id="logoutDiv">
+                <h1 th:text="${myvar}"> File Handler</h1>
+                <!--
+                <h2  th:each="msg : ${greetings}"
+                th:text="${msg}">Hello, homepage!
+                </h2>
+                <h2
+                th:unless="${msg.contains('goodbye')}"
+                th:text="${msg}">Hello, homepage!</h2>
+
+                -->
                 <form action="#" method="POST">
                     <button type="submit" class="btn btn-secondary float-right">Logout</button>
                 </form>

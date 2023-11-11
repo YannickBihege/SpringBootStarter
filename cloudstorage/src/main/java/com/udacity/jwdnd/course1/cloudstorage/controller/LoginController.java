@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
+import com.udacity.jwdnd.course1.cloudstorage.form.LoginForm;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +14,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
     @Autowired
     private UserService userService;
+
     @GetMapping("/login")
-    public String login(Model model) {
-        return "login"; // This will return the login.html Thymeleaf template
+    public String getLoginPage(@ModelAttribute("loginInput") LoginForm loginInput, Model model) {
+        boolean loggedOut = false;
+        model.addAttribute("loggedOut", false);
+        return "login";
     }
 
-    // Add other login-related methods here
     @PostMapping("/login")
-    public String login(@ModelAttribute("user") User user, Model model) {
-        if (userService.authenticate(user.getUsername(), user.getPassword())) {
-            // Successful login
+    public String login(@ModelAttribute("loginInput") LoginForm loginInput, Model model) {
+
+        if (userService.authenticate(loginInput.getUsername(), loginInput.getPassword())) {
+            model.addAttribute("invalidCredentials", false);
             return "redirect:/home";
         } else {
             // Invalid username or password
+            model.addAttribute("invalidCredentials", true);
             model.addAttribute("error", "Invalid username or password");
             return "login";
         }
     }
+
 
 }

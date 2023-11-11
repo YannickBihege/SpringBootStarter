@@ -1,18 +1,13 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
-import com.udacity.jwdnd.course1.cloudstorage.dto.SignupDto;
-import com.udacity.jwdnd.course1.cloudstorage.dto.SignupResponseDto;
-import com.udacity.jwdnd.course1.cloudstorage.exceptions.CustomException;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
-import java.util.Objects;
 
 /**
  * User Service that performs business logic operations regarding users
@@ -63,40 +58,6 @@ public class UserService {
         }
         return false;
     }
-
-/*
-    public SignupResponseDto signUp(SignupDto signupDto)  throws CustomException {
-        // Check to see if the current email address has already been registered.
-        if (Objects.nonNull(userMapper.findByEmail(signupDto.getEmail()))) {
-            // If the email address has been registered then throw an exception.
-            throw new CustomException("User already exists");
-        }
-        // first encrypt the password
-        String encryptedPassword = signupDto.getPassword();
-        try {
-            SecureRandom random = new SecureRandom();
-            byte[] salt = new byte[16];
-            random.nextBytes(salt);
-            String encodedSalt = Base64.getEncoder().encodeToString(salt);
-            String hashedPassword = hashService.getHashedValue(signupDto.getPassword(), encodedSalt);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-            logger.error("hashing password failed {}", e.getMessage());
-        }
-
-        try {
-            // save the User
-            userMapper.insert(signupDto);
-            // success in creating
-            return new SignupResponseDto("success", "user created successfully");
-        } catch (Exception e) {
-            // handle signup error
-            throw new CustomException(e.getMessage());
-        }
-    }
-
- */
-
 
 
 }
