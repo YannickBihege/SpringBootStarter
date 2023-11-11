@@ -22,6 +22,7 @@ import java.io.InputStream;
 @Controller
 //@RequestMapping("/home") // This is the simplest way to do it
 public class HomeController {
+
     @Autowired
     private FileService fileService;
     @Autowired
@@ -42,10 +43,9 @@ public class HomeController {
     public String home(Model model) {
         model.addAttribute("myvar", "BihegeY File Handler");
         // You can add any necessary model attributes here
-        // Add the necessary data to the model
-        // model.addAttribute("files", fileService.getAllFiles());
-        // model.addAttribute("notes", noteService.getAllNotes());
-        // model.addAttribute("credentials", credentialService.getAllCredentials());
+       // model.addAttribute("files", fileService.);
+        //model.addAttribute("notes", noteService.getNotesByUserId());
+        //model.addAttribute("credentials", credentialService.getCredentialById());
         return "home"; // This corresponds to the name of the Thymeleaf template (home.html)
     }
 

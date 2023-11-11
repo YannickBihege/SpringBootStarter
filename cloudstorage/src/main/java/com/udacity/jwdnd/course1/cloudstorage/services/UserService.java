@@ -33,21 +33,23 @@ public class UserService {
         return userMapper.getUserByUsername(username) == null;
     }
 
-    public User createUser(String firstName, String lastName, String userName, String password) {
+    public int createUser(User user) {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         String encodedSalt = Base64.getEncoder().encodeToString(salt);
-        String hashedPassword = hashService.getHashedValue(password, encodedSalt);
-        return userMapper.insert(new User(null, userName, encodedSalt, hashedPassword, firstName, lastName));
+        String hashedPassword = hashService.getHashedValue(user.getPassword(), encodedSalt);
+        return userMapper.insert(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstName(), user.getLastName()));
+
     }
+
 
     public User getUserByUsername(String username) {
         return userMapper.getUserByUsername(username);
     }
 
     public void deleteUser(Integer userId){
-            userMapper.deleteUser(userId);
+            userMapper.delete(userId);
     };
 
     public boolean authenticate(String username, String password) {
