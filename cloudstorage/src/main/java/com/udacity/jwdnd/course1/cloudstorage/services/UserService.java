@@ -33,7 +33,7 @@ public class UserService {
         return userMapper.getUserByUsername(username) == null;
     }
 
-    public int createUser(String firstName, String lastName, String userName, String password) {
+    public User createUser(String firstName, String lastName, String userName, String password) {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
