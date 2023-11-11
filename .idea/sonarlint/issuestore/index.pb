@@ -21,8 +21,6 @@ Qcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/Note.ja
 Qcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/File.java,4/d/4d8867b7d953b4eada6c5ce3520dd60d025082b0
 á
 Wcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/Credential.java,a/b/ab4596791eeb55182ad45618aa3c9724fdb46101
-Å
-Qcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/User.java,f/9/f99ab3b69a9c749eec672f81ed2e82f6b100ba71
 ë
 acloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/exceptions/CustomException.java,6/c/6c7a44b3093355992459e11d35a2d78b2a69d8d0
 à
