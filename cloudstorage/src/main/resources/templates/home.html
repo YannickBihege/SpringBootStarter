@@ -19,6 +19,8 @@
                 <h2
                 th:unless="${msg.contains('goodbye')}"
                 th:text="${msg}">Hello, homepage!</h2>
+                 <h1 th:unless="${#lists.size(greetings) > 5}" th:each="msg : ${greetings}" th:text="${msg}">Hello, homepage!</h1>
+   <h1 th:if="${#lists.size(greetings) > 5}">I think that's enough!</h1>
 
                 -->
                 <form action="#" method="POST">
@@ -35,7 +37,7 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-files" role="tabpanel" aria-labelledby="nav-files-tab">
-                        <form action="#" enctype="multipart/form-data" method="POST">
+                        <form action="#" enctype="multipart/form-data" th:action="@{/file-upload}" method="POST">
                             <div class="container">
                                 <div class="row" style="margin: 1em;">
                                     <div class="col-sm-2">

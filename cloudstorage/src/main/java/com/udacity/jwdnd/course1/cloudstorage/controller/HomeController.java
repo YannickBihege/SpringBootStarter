@@ -7,10 +7,11 @@ import com.udacity.jwdnd.course1.cloudstorage.services.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Controller for receiving requests.
@@ -48,10 +49,11 @@ public class HomeController {
         return "home"; // This corresponds to the name of the Thymeleaf template (home.html)
     }
 
-    @PostMapping("/uploadFile")
-    public String uploadFile() {
-        // Handle file upload logic here
-        // Redirect back to the home page or show a success message
+    @PostMapping("/file-upload")
+    public String handleFileUpload(@RequestParam("fileUpload") MultipartFile fileUpload, Model model) throws IOException {
+
+        InputStream fis = fileUpload.getInputStream();
+        //
         return "redirect:/home";
     }
 
