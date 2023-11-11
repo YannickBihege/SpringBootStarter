@@ -13,12 +13,12 @@ public interface FileMapper {
     @Select("SELECT * FROM files WHERE fileId = #{fileId}")
      File getFileById(Integer fileId);
 
-    @Insert("INSERT INTO files (fileName, fileType, fileSize, userId, fileData) " +
-            "VALUES (#{fileName}, #{fileType}, #{fileSize}, #{userId}, #{fileData})")
+    @Insert("INSERT INTO files (fileName, contenttype, fileSize, userId, fileData) " +
+            "VALUES (#{fileName}, #{contenttype}, #{fileSize}, #{userId}, #{fileData})")
     @Options(useGeneratedKeys = true, keyProperty = "fileId")
     int insert(File file);
 
-    @Update("UPDATE files SET fileName = #{fileName}, fileType = #{fileType}, " +
+    @Update("UPDATE files SET fileName = #{fileName}, contenttype = #{contenttype}, " +
             "fileSize = #{fileSize}, userId = #{userId}, fileData = #{fileData} " +
             "WHERE fileId = #{fileId}")
     void update(File file);
