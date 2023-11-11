@@ -11,8 +11,6 @@ acloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/Cred
 ecloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/AuthenticationService.java,9/c/9c43eed07f7e6f34d9bc8701f8976cc94f27ae02
 à
 Xcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/FileMapper.java,d/2/d27da43caee326a447727a4f8dba5d154f20ac03
-é
-^cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/CredentialMapper.java,2/d/2d661b5f666c02dabfbb50b565f491cbf9176929
 Å
 Qcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/Note.java,e/7/e7a6c1ca95280fb75c44f83017c51e11b9417815
 Å

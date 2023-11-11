@@ -11,11 +11,8 @@ public interface UserMapper {
 
     @Insert("INSERT INTO USERS (username, salt, password, firstname, lastname) VALUES(#{username}, #{salt}, #{password}, #{firstName}, #{lastName})")
     @Options(useGeneratedKeys = true, keyProperty = "userId")
-    int insert(User user);
+    User insert(User user);
 
-    @Insert("INSERT INTO USERS (username, salt, password, firstname, lastname) VALUES(#{username}, #{salt}, #{password}, #{firstName}, #{lastName})")
-    @Options(useGeneratedKeys = true, keyProperty = "userId")
-    int insertSignupdto(User user);
 
     @Update("UPDATE users SET username = #{username}, salt = #{salt}, password = #{password}, " +
             "firstName = #{firstName}, lastName = #{lastName} WHERE userId = #{userId}")
