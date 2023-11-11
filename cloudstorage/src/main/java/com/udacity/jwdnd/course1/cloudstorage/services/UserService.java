@@ -1,5 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
+import com.udacity.jwdnd.course1.cloudstorage.form.SignupForm;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import org.slf4j.Logger;
@@ -32,13 +33,13 @@ public class UserService {
         return userMapper.getUserByUsername(username) == null;
     }
 
-    public int createUser(User user) {
+    public int createUser(String firstName, String lastName, String userName, String password) {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         String encodedSalt = Base64.getEncoder().encodeToString(salt);
-        String hashedPassword = hashService.getHashedValue(user.getPassword(), encodedSalt);
-        return userMapper.insert(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstName(), user.getLastName()));
+        String hashedPassword = hashService.getHashedValue(password, encodedSalt);
+        return userMapper.insert(new User(null, userName, encodedSalt, hashedPassword, firstName, lastName));
     }
 
     public User getUserByUsername(String username) {

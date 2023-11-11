@@ -1,6 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 
+import com.udacity.jwdnd.course1.cloudstorage.form.SignupForm;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -16,22 +17,20 @@ public class SignupController {
     }
 
     @RequestMapping("/signup")
-    public String signupView(@ModelAttribute User user, Model model) {
-       // model.addAttribute("user", userService.createUser()); // Assuming you have a User class with firstName, lastName, username, and password properties
-
+    public String signupView(@ModelAttribute("signupInput") SignupForm signupInput, Model model) {
         return "signup";
     }
 
     @PostMapping("/signupUser")
-    public String signupUser(@ModelAttribute User user, Model model) {
+    public String signupUser(@ModelAttribute("signupInput") SignupForm signupInput, Model model) {
         String signupError = null;
 
-        if (!userService.isUsernameAvailable(user.getUsername())) {
+        if (!userService.isUsernameAvailable(signupInput.getUsername())) {
             signupError = "The username already exists.";
         }
 
         if (signupError == null) {
-            int rowsAdded = userService.createUser(user);
+            int rowsAdded = userService.createUser(signupInput.getFirstName(), signupInput.getLastName(), signupInput.getUsername(), signupInput.getPassword());
             if (rowsAdded < 0) {
                 signupError = "There was an error signing you up. Please try again.";
             }
@@ -45,14 +44,6 @@ public class SignupController {
 
         return "signup";
     }
-
-    /*
-    @PostMapping("/signup")
-    public SignupResponseDto Signup(@RequestBody SignupDto signupDto)  {
-      //  return userService.signUp(signupDto);
-    }
-    */
-
 
 
 }
