@@ -32,8 +32,10 @@ public class FileService {
         return fileMapper.getFileById(fileId);
     }
 
-    public void deleteFile(Integer fileId) {
+    public void updateFile(File file){fileMapper.update(file);}
 
+    public void deleteFile(Integer fileId) {
+        fileMapper.delete(fileId);
     }
 
     ;

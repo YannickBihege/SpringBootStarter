@@ -1,6 +1,5 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
-import com.udacity.jwdnd.course1.cloudstorage.form.SignupForm;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import org.slf4j.Logger;
@@ -20,7 +19,6 @@ import java.util.Base64;
 public class UserService {
 
     public final Logger logger = LoggerFactory.getLogger(UserService.class);
-
     private final UserMapper userMapper;
     private final HashService hashService;
 
@@ -43,10 +41,11 @@ public class UserService {
 
     }
 
-
     public User getUserByUsername(String username) {
         return userMapper.getUserByUsername(username);
     }
+
+
 
     public void deleteUser(Integer userId){
             userMapper.delete(userId);

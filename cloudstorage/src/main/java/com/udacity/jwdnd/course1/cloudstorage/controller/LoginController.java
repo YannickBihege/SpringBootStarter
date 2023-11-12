@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LoginController {
-    @Autowired
+
     private UserService userService;
 
     @GetMapping("/login")
