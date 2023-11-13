@@ -8,6 +8,9 @@ public class Credential {
     private String password;
     private String userId;
 
+    public Credential(String url, String userName, String key, String password, String userId) {
+    }
+
     public Integer getCredentialId() {
         return credentialId;
     }

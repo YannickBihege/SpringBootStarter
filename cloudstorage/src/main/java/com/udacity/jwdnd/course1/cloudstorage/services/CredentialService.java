@@ -26,6 +26,10 @@ public class CredentialService {
     public void insert(Credential credential) {
         credentialMapper.insert(credential);
     }
+    /*
+    public void insert(String url, String userName, String key, char []password, String userId) {
+        credentialMapper.insert(new Credential(url,userName,key,password, userId));
+    }*/
 
     public void update(Credential credential) {
         credentialMapper.update(credential);

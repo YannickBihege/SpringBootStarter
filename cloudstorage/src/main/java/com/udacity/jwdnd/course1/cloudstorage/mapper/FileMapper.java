@@ -16,7 +16,7 @@ public interface FileMapper {
     @Insert("INSERT INTO files (fileName, contenttype, fileSize, userId, fileData) " +
             "VALUES (#{fileName}, #{contenttype}, #{fileSize}, #{userId}, #{fileData})")
     @Options(useGeneratedKeys = true, keyProperty = "fileId")
-    int insert(File file);
+    Integer insert(File file);
 
     @Update("UPDATE files SET fileName = #{fileName}, contenttype = #{contenttype}, " +
             "fileSize = #{fileSize}, userId = #{userId}, fileData = #{fileData} " +

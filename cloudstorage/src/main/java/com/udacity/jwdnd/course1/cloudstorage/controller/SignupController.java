@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.security.SecureRandom;
 import java.util.Base64;
 
-@Controller()
+@Controller
+@RequestMapping("/signup")
 public class SignupController {
     private final UserService userService;
     private final HashService hashService;

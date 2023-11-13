@@ -7,7 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
+@SpringBootApplication
 public class CloudStorageApplication {
 
     public static void main(String[] args) {

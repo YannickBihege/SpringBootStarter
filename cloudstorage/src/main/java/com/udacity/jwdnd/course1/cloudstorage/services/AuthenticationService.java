@@ -1,20 +1,31 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
+
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+/*
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
+*/
 
 import java.util.ArrayList;
+
+
+/*
 
 @Service
 public class AuthenticationService implements AuthenticationProvider
 {
+    /**
+     The class is provided by the nd source and comes from the example
+     */
+/*
+
     private Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
     private UserMapper userMapper;
@@ -43,9 +54,10 @@ public class AuthenticationService implements AuthenticationProvider
         return null;
     }
 
-
     @Override
     public boolean supports(Class<?> aClass) {
         return false;
     }
 }
+
+*/

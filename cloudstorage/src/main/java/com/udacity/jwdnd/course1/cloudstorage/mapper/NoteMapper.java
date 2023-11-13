@@ -16,7 +16,7 @@ public interface NoteMapper {
     @Insert("INSERT INTO notes (noteTitle, noteDescription, userId) " +
             "VALUES (#{noteTitle}, #{noteDescription}, #{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "noteId")
-    void insert(Note note);
+    Integer insert(Note note);
 
     @Update("UPDATE notes SET noteTitle = #{noteTitle}, noteDescription = #{noteDescription} " +
             "WHERE noteId = #{noteId}")
