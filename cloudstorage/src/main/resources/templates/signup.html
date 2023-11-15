@@ -3,20 +3,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <!--
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+    -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 
     <title>Sign Up</title>
 </head>
 <body class="p-3 mb-2 bg-light text-black">
 <div class="container justify-content-center w-50 p-3" style="background-color: #eeeeee; margin-top: 5em;">
     <div class="form-group">
-        <label><a th:href="@{/login}">Back to Login</a></label>
+        <label><a th:href="@{/api/login}">Back to Login</a></label>
     </div>
 
     <h1 class="display-5">Sign Up</h1>
 
-    <form th:action="@{/signup}" action="#" th:object="${signupInput}" method="POST">
+    <form th:action="@{/api/signup}" action="#" th:object="${signupInput}" method="POST">
 
         <div th:if="${signupSuccess}" class="success-message">
             <p th:text="${signupSuccess}">

@@ -31,5 +31,3 @@ Xcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/FileMa
 ^cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/CredentialMapper.java,2/d/2d661b5f666c02dabfbb50b565f491cbf9176929
 Å
 Qcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/User.java,f/9/f99ab3b69a9c749eec672f81ed2e82f6b100ba71
-á
-Wcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/Credential.java,a/b/ab4596791eeb55182ad45618aa3c9724fdb46101

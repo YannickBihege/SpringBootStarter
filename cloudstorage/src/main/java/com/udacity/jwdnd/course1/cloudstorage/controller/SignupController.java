@@ -28,7 +28,7 @@ public class SignupController {
         return "signup";
     }
 
-    @PostMapping("/api/signupUser")
+    @PostMapping("/api/signup")
     public String signupUser(@ModelAttribute("signupInput") SignupForm signupInput, Model model) {
         String signupError = null;
 
