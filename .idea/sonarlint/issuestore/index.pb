@@ -21,9 +21,15 @@ Qcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/File.ja
 [cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/NoteService.java,0/8/080dfc91205b0df9ae73cc1a9547700fb32adfd2
 Å
 Qcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/Note.java,e/7/e7a6c1ca95280fb75c44f83017c51e11b9417815
-ë
-acloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/services/CredentialService.java,c/1/c11e8baac425c0924efee7761ec1613c1978c7c8
 à
 Xcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/UserMapper.java,a/e/ae7d798d27e7a7b34551e969f60d9c0d45c4f1d8
 à
 Xcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/NoteMapper.java,1/6/1620a7e77c9ecec2a93342b40cbe747722234599
+à
+Xcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/FileMapper.java,d/2/d27da43caee326a447727a4f8dba5d154f20ac03
+é
+^cloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/mapper/CredentialMapper.java,2/d/2d661b5f666c02dabfbb50b565f491cbf9176929
+Å
+Qcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/User.java,f/9/f99ab3b69a9c749eec672f81ed2e82f6b100ba71
+á
+Wcloudstorage/src/main/java/com/udacity/jwdnd/course1/cloudstorage/model/Credential.java,a/b/ab4596791eeb55182ad45618aa3c9724fdb46101

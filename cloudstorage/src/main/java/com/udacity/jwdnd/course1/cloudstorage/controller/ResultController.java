@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-@RequestMapping("/result")
 public class ResultController {
 
-    @RequestMapping("/result")
+    @RequestMapping("api/result")
     public String showResult(@RequestParam("message") String message) {
         return "result";
     }

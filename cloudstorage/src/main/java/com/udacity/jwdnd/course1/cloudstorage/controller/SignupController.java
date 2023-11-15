@@ -13,7 +13,6 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 @Controller
-@RequestMapping("/signup")
 public class SignupController {
     private final UserService userService;
     private final HashService hashService;
@@ -24,12 +23,12 @@ public class SignupController {
         this.hashService = hashService;
     }
 
-    @RequestMapping("/signup")
+    @GetMapping("/api/signup")
     public String signupView(@ModelAttribute("signupInput") SignupForm signupInput, Model model) {
         return "signup";
     }
 
-    @PostMapping("/signupUser")
+    @PostMapping("/api/signupUser")
     public String signupUser(@ModelAttribute("signupInput") SignupForm signupInput, Model model) {
         String signupError = null;
 

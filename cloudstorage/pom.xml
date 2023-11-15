@@ -8,11 +8,13 @@
         <version>2.2.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+
     <groupId>com.udacity.jwdnd.course1</groupId>
     <artifactId>cloudstorage</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloudstorage</name>
-    <description>Final Project for Udacity's Spring Boot Basics course.</description>
+    <description>Project for Udacity's Spring Boot Basics course.</description>
 
     <properties>
         <java.version>11</java.version>
@@ -91,7 +93,7 @@
         </dependency>
 
         <!--Security-->
-        <!--
+
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
@@ -101,7 +103,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        -->
+
 
     </dependencies>
 

@@ -2,7 +2,6 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Credential;
-import com.udacity.jwdnd.course1.cloudstorage.model.Note;
 import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
 import com.udacity.jwdnd.course1.cloudstorage.services.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.NoteService;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Controller
-@RequestMapping("/home")
 public class HomeController {
 
     @Autowired
@@ -33,19 +31,17 @@ public class HomeController {
         this.credentialService = credentialService;
     }
 
-
-    //@GetMapping("/home")
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @GetMapping("/api/home")
     public String home(Model model) {
         model.addAttribute("myvar", "BihegeY File Handler");
         // You can add any necessary model attributes here
-       // model.addAttribute("files", fileService.);
+        //model.addAttribute("files", fileService.);
         //model.addAttribute("notes", noteService.getNotesByUserId());
         //model.addAttribute("credentials", credentialService.getCredentialById());
         return "home"; // This corresponds to the name of the Thymeleaf template (home.html)
     }
 
-    @PostMapping("/file-upload")
+    @PostMapping("/api/home/file-upload")
     public String handleFileUpload(@RequestParam("fileUpload") MultipartFile fileUpload, Model model) throws IOException {
 
         InputStream fis = fileUpload.getInputStream();
@@ -53,7 +49,7 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @PostMapping("/addNote")
+    @PostMapping("/api/home/addNote")
     public String addNote(@RequestParam String noteTitle, @RequestParam String noteDescription) {
         // Handle adding a new note here, e.g., save to a database
         // Redirect back to the home page or show a success message
@@ -62,14 +58,14 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @PostMapping("/editNote")
+    @PostMapping("/api/home/editNote")
     public String editNote(@RequestParam Long noteId, @RequestParam String noteTitle, @RequestParam String noteDescription) {
         // Handle editing a note here, e.g., update in the database
         // Redirect back to the home page or show a success message
         return "redirect:/home";
     }
 
-    @PostMapping("/deleteNote")
+    @PostMapping("/api/home/deleteNote")
     public String deleteNote(@RequestParam Long noteId) {
         // Handle deleting a note here, e.g., remove from the database
         // Redirect back to the home page or show a success message
@@ -77,7 +73,7 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @PostMapping("/addCredential")
+    @PostMapping("/api/home/addCredential")
     public String addCredential(@RequestParam String url, @RequestParam String username, @RequestParam String key, @RequestParam char[] password, @RequestParam String userId) {
         // Handle adding a new credential here, e.g., save to a database
         // Redirect back to the home page or show a success message
@@ -86,14 +82,14 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    @PostMapping("/editCredential")
+    @PostMapping("/api/editCredential")
     public String editCredential(@RequestParam Long credentialId, @RequestParam String url, @RequestParam String username, @RequestParam String password) {
         // Handle editing a credential here, e.g., update in the database
         // Redirect back to the home page or show a success message
         return "redirect:/home";
     }
 
-    @PostMapping("/deleteCredential")
+    @PostMapping("/api/deleteCredential")
     public String deleteCredential(@RequestParam Long credentialId) {
         // Handle deleting a credential here, e.g., remove from the database
         // Redirect back to the home page or show a success message
