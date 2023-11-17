@@ -6,19 +6,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class LoginController {
 
     private UserService userService;
 
 
-    @GetMapping("/api/login")
+    @RequestMapping("/api/login")
     public String getLoginPage(@ModelAttribute("loginInput") LoginForm loginInput, Model model) {
         model.addAttribute("loggedOut", false);
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     public String login(@ModelAttribute("loginInput") LoginForm loginInput, Model model) {
 
         if (userService.authenticate(loginInput.getUsername(), loginInput.getPassword())) {
