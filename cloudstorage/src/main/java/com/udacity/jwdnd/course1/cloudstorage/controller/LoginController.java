@@ -4,12 +4,9 @@ import com.udacity.jwdnd.course1.cloudstorage.form.LoginForm;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class LoginController {
 
     private UserService userService;
@@ -21,7 +18,7 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/api/login")
+    @PostMapping("/login")
     public String login(@ModelAttribute("loginInput") LoginForm loginInput, Model model) {
 
         if (userService.authenticate(loginInput.getUsername(), loginInput.getPassword())) {

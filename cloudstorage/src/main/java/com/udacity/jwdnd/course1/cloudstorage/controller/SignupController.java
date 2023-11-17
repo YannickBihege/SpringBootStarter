@@ -5,14 +5,13 @@ import com.udacity.jwdnd.course1.cloudstorage.form.SignupForm;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.HashService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.SecureRandom;
 import java.util.Base64;
 
-@Controller
+@RestController
 public class SignupController {
     private final UserService userService;
     private final HashService hashService;
