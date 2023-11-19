@@ -31,7 +31,6 @@ public class HomeController {
         this.credentialService = credentialService;
     }
 
-    //@GetMapping("/api/home")
     @RequestMapping("/api/home")
     public String home(Model model) {
         model.addAttribute("myvar", "BihegeY File Handler");

@@ -1,6 +1,13 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class File {
+    @Id
+    @GeneratedValue
     private int fileId;
     private String fileName;
     private String fileType;

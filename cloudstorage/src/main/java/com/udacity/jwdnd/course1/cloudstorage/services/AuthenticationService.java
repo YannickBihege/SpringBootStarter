@@ -26,10 +26,10 @@ public class AuthenticationService implements AuthenticationProvider
      */
 
 
-    private Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
+    private final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
 
-    private UserMapper userMapper;
-    private HashService hashService;
+    private final UserMapper userMapper;
+    private final HashService hashService;
 
     public AuthenticationService(UserMapper userMapper, HashService hashService) {
         this.userMapper = userMapper;
@@ -42,7 +42,7 @@ public class AuthenticationService implements AuthenticationProvider
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        User user = userMapper.getUserByUsername(username);
+        User user = userMapper.getUser(username);
         if (user != null) {
             String encodedSalt = user.getSalt();
             String hashedPassword = hashService.getHashedValue(password, encodedSalt);

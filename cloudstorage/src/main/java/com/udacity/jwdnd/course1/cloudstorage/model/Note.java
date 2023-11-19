@@ -1,6 +1,13 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Note {
+    @Id
+    @GeneratedValue
     private Integer noteId;
     private String noteTitle;
     private String noteDescription;
@@ -12,6 +19,11 @@ public class Note {
         this.noteDescription = noteDescription;
         this.userId = userId;
     }
+
+    public Note() {
+
+    }
+
 
     public Integer getNoteId() {
         return noteId;

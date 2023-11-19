@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.core.SpringVersion;
+import org.springframework.security.core.SpringSecurityCoreVersion;
 
 import java.io.File;
 
@@ -38,5 +39,8 @@ class CloudStorageApplicationTests {
 		assertEquals("5.2.3.RELEASE", SpringVersion.getVersion());
 	}
 
-
+	@Test
+	public void springSecurityVersion(){
+		assertEquals("5.2.1.RELEASE", SpringSecurityCoreVersion.getVersion());
+	}
 }

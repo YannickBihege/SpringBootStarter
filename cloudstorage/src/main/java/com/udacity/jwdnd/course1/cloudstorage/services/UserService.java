@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
 
 /**
  * User Service that performs business logic operations regarding users
@@ -28,7 +29,7 @@ public class UserService {
     }
 
     public boolean isUsernameAvailable(String username) {
-        return userMapper.getUserByUsername(username) == null;
+        return userMapper.getUser(username) == null;
     }
 
     public int createUser(User user) {
@@ -41,18 +42,25 @@ public class UserService {
 
     }
 
+
     public User getUserByUsername(String username) {
-        return userMapper.getUserByUsername(username);
+        return userMapper.getUser(username);
     }
 
+
+    public List<User> findAllUsers() {
+        return userMapper.findAll();
+    }
 
 
     public void deleteUser(Integer userId){
             userMapper.delete(userId);
-    };
+    }
+
+
 
     public boolean authenticate(String username, String password) {
-        User user = userMapper.getUserByUsername(username);
+        User user = userMapper.getUser(username);
 
         if (user != null) {
             String hashedPassword = hashService.getHashedValue(password, user.getSalt());
@@ -60,6 +68,9 @@ public class UserService {
         }
         return false;
     }
+
+
+
 
 
 }

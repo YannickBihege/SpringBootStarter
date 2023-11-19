@@ -1,11 +1,26 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
+import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
+
+import javax.persistence.*;
+
+//@Entity
+//@Table(name="cloudstorage.users")
 public class User {
+    //@Id
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name="userid")
     private Integer userId;
+    // @Column(name="username")
     private String username;
+    // @Column(name="salt")
     private String salt;
+    //@Column(name="password")
     private String password;
+
+    //@Column(name="firstName")
     private String firstName;
+    // @Column(name="lastName")
     private String lastName;
 
     public User(Integer userId, String username, String salt, String password, String firstName, String lastName) {
@@ -15,6 +30,10 @@ public class User {
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User() {
+
     }
 
     public Integer getUserId() {

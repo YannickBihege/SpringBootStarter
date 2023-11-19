@@ -1,6 +1,12 @@
 package com.udacity.jwdnd.course1.cloudstorage.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
 public class Credential {
+
     private Integer credentialId;
     private String url;
     private String userName;
@@ -9,6 +15,10 @@ public class Credential {
     private String userId;
 
     public Credential(String url, String userName, String key, String password, String userId) {
+    }
+
+    public Credential() {
+
     }
 
     public Integer getCredentialId() {
