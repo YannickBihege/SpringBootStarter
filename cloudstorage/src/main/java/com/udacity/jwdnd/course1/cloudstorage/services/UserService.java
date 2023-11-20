@@ -41,7 +41,7 @@ public class UserService {
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         String encodedSalt = Base64.getEncoder().encodeToString(salt);
-        String encryptedPassword = encryptionService.encryptValue(user.getPassword());
+        String encryptedPassword = encryptionService.encryptValue(user.getPassword(),encryptionKey,encodedSalt);
         return userMapper.insert(new User(null, user.getUsername(), encodedSalt, encryptedPassword, user.getFirstName(), user.getLastName()));
     }
 
@@ -65,8 +65,8 @@ public class UserService {
         User user = userMapper.getUser(loginInput.getUsername());
 
         if (user != null) {
-            String encryptedPassword = encryptionService.encryptValue(loginInput.getPassword());
-            String persistedPasswordEncrypted = encryptionService.encryptValue(user.getPassword());
+            String encryptedPassword = encryptionService.encryptValue(loginInput.getPassword(),encryptionKey, user.getSalt());
+            String persistedPasswordEncrypted = encryptionService.encryptValue(user.getPassword(),encryptionKey, user.getSalt());
             return encryptedPassword.equals(persistedPasswordEncrypted);
         }
         return false;

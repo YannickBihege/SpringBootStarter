@@ -6,70 +6,58 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.*;
+import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.Base64;
 
 @Service
 public class EncryptionService {
     private Logger logger = LoggerFactory.getLogger(EncryptionService.class);
 
+    private static final String SECRET_KEY_ALGORITHM = "PBKDF2WithHmacSHA256";
+    private static final int ITERATION_COUNT = 65536; // Adjust as needed
+    private static final int KEY_LENGTH = 128; // Key size in bits (128, 192, or 256)
     private static final String AES_ALGORITHM = "AES";
-    private static final int KEY_SIZE = 128; // Key size in bits (128, 192, or 256)
 
-    public static SecretKey generateKey() throws NoSuchAlgorithmException {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance(AES_ALGORITHM);
-        keyGenerator.init(KEY_SIZE);
-        return keyGenerator.generateKey();
-    }
-
-    public static String encryptValue3(String value, String key) throws Exception {
-        SecretKeySpec secretKeySpec = (SecretKeySpec) generateKey();
-        Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-        byte[] encryptedBytes = cipher.doFinal(value.getBytes(StandardCharsets.UTF_8));
-        return Base64.getEncoder().encodeToString(encryptedBytes);
-    }
-
-    public static String encryptValue(String str) {
-        StringBuilder sb = new StringBuilder(str);
-        return sb.reverse().toString();
-    }
-
-    public String encryptValue2(String data, String key) {
-        //byte[] encryptedValue = null;
-        byte[] encryptedValue = new byte[0];
-
+    public SecretKey generateKey(String password, String salt) {
         try {
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            SecretKey secretKey = new SecretKeySpec(key.getBytes(), "AES");
-            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            encryptedValue = cipher.doFinal(data.getBytes("UTF-8"));
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException
-                 | UnsupportedEncodingException | IllegalBlockSizeException | BadPaddingException e) {
-            logger.error(e.getMessage());
+            SecretKeyFactory factory = SecretKeyFactory.getInstance(SECRET_KEY_ALGORITHM);
+            KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), ITERATION_COUNT, KEY_LENGTH);
+            SecretKey tmp = factory.generateSecret(spec);
+            return new SecretKeySpec(tmp.getEncoded(), AES_ALGORITHM);
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            logger.error("Error generating key: {}", e.getMessage());
+            throw new RuntimeException("Error generating key", e);
         }
-
-        return Base64.getEncoder().encodeToString(encryptedValue);
     }
 
-
-    public String decryptValue(String data, String key) {
-        byte[] decryptedValue = null;
-
+    public String encryptValue(String data, String password, String salt) {
         try {
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            SecretKey secretKey = new SecretKeySpec(key.getBytes(), "AES");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            decryptedValue = cipher.doFinal(Base64.getDecoder().decode(data));
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException
-                 | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
-            logger.error(e.getMessage());
+            Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
+            cipher.init(Cipher.ENCRYPT_MODE, generateKey(password, salt));
+            byte[] encryptedBytes = cipher.doFinal(data.getBytes(StandardCharsets.UTF_8));
+            return Base64.getEncoder().encodeToString(encryptedBytes);
+        } catch (Exception e) {
+            logger.error("Error encrypting value: {}", e.getMessage());
+            throw new RuntimeException("Error encrypting value", e);
         }
+    }
 
-        return new String(decryptedValue);
+    public String decryptValue(String data, String password, String salt) {
+        try {
+            Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
+            cipher.init(Cipher.DECRYPT_MODE, generateKey(password, salt));
+            byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(data));
+            return new String(decryptedBytes, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            logger.error("Error decrypting value: {}", e.getMessage());
+            throw new RuntimeException("Error decrypting value", e);
+        }
     }
 }

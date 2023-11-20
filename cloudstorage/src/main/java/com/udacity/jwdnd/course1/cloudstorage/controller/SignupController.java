@@ -19,6 +19,9 @@ public class SignupController {
     private final HashService hashService;
    private final EncryptionService encryptionService;
 
+    private final static String encryptionKey = "key";
+
+
 
     public SignupController(UserService userService, HashService hashService ,EncryptionService encryptionService ) {
         this.userService = userService;
@@ -41,11 +44,12 @@ public class SignupController {
 
         if (signupError == null) {
 
-            String encryptedPassword = encryptionService.encryptValue(signupInput.getPassword());
             SecureRandom random = new SecureRandom();
             byte[] salt = new byte[16];
             random.nextBytes(salt);
             String encodedSalt = Base64.getEncoder().encodeToString(salt);
+            String encryptedPassword = encryptionService.encryptValue(signupInput.getPassword(),encryptionKey,encodedSalt);
+
 
 
             int rowsAdded = userService.saveUser(new User(null,signupInput.getUsername(), encodedSalt, encryptedPassword, signupInput.getFirstName(), signupInput.getLastName()));

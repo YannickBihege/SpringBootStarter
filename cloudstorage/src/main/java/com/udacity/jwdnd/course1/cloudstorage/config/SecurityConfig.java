@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.config;
 
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
+import com.udacity.jwdnd.course1.cloudstorage.services.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,6 +49,9 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){return NoOpPasswordEncoder.getInstance();}
+
+
+
     }
 
 
