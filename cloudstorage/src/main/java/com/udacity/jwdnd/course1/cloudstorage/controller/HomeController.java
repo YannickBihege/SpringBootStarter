@@ -1,8 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 
-import com.udacity.jwdnd.course1.cloudstorage.model.Credential;
-import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
 import com.udacity.jwdnd.course1.cloudstorage.services.FileService;
 import com.udacity.jwdnd.course1.cloudstorage.services.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +19,12 @@ public class HomeController {
     private FileService fileService;
     @Autowired
     private NoteService noteService;
-    @Autowired
-    private CredentialService credentialService;
+  ;
 
     @Autowired
-    public HomeController(FileService fileService, NoteService noteService, CredentialService credentialService) {
+    public HomeController(FileService fileService, NoteService noteService) {
         this.fileService = fileService;
         this.noteService = noteService;
-        this.credentialService = credentialService;
     }
 
     @RequestMapping("/api/home")
@@ -43,9 +39,7 @@ public class HomeController {
 
     @PostMapping("/api/home/file-upload")
     public String handleFileUpload(@RequestParam("fileUpload") MultipartFile fileUpload, Model model) throws IOException {
-
         InputStream fis = fileUpload.getInputStream();
-        //
         return "redirect:/home";
     }
 

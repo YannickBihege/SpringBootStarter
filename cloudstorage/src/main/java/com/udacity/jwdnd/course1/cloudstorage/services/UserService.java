@@ -1,10 +1,10 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
+import com.udacity.jwdnd.course1.cloudstorage.form.LoginForm;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
 
 import java.security.SecureRandom;
 import java.util.Base64;
@@ -19,27 +19,30 @@ import java.util.List;
 @Service
 public class UserService {
 
-    public final Logger logger = LoggerFactory.getLogger(UserService.class);
     private final UserMapper userMapper;
-    private final HashService hashService;
 
-    public UserService(UserMapper userMapper, HashService hashService) {
+    private final HashService hashService;
+    private final EncryptionService encryptionService;
+
+    private final static String encryptionKey = "key";
+
+    public UserService(UserMapper userMapper, HashService hashService, EncryptionService encryptionService) {
         this.userMapper = userMapper;
         this.hashService = hashService;
+        this.encryptionService = encryptionService;
     }
 
     public boolean isUsernameAvailable(String username) {
         return userMapper.getUser(username) == null;
     }
 
-    public int createUser(User user) {
+    public int saveUser(User user) {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
         random.nextBytes(salt);
         String encodedSalt = Base64.getEncoder().encodeToString(salt);
-        String hashedPassword = hashService.getHashedValue(user.getPassword(), encodedSalt);
-        return userMapper.insert(new User(null, user.getUsername(), encodedSalt, hashedPassword, user.getFirstName(), user.getLastName()));
-
+        String encryptedPassword = encryptionService.encryptValue(user.getPassword());
+        return userMapper.insert(new User(null, user.getUsername(), encodedSalt, encryptedPassword, user.getFirstName(), user.getLastName()));
     }
 
 
@@ -53,24 +56,23 @@ public class UserService {
     }
 
 
-    public void deleteUser(Integer userId){
-            userMapper.delete(userId);
+    public void deleteUser(Integer userId) {
+        userMapper.delete(userId);
     }
 
 
-
-    public boolean authenticate(String username, String password) {
-        User user = userMapper.getUser(username);
+    public boolean authenticate(LoginForm loginInput) {
+        User user = userMapper.getUser(loginInput.getUsername());
 
         if (user != null) {
-            String hashedPassword = hashService.getHashedValue(password, user.getSalt());
-            return hashedPassword.equals(user.getPassword());
+            String encryptedPassword = encryptionService.encryptValue(loginInput.getPassword());
+            String persistedPasswordEncrypted = encryptionService.encryptValue(user.getPassword());
+            return encryptedPassword.equals(persistedPasswordEncrypted);
         }
         return false;
     }
 
 
-
-
-
 }
+
+

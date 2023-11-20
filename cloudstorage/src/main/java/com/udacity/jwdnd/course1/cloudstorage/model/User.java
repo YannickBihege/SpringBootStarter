@@ -4,9 +4,14 @@ import org.hibernate.validator.internal.IgnoreForbiddenApisErrors;
 
 import javax.persistence.*;
 
+
 //@Entity
 //@Table(name="cloudstorage.users")
 public class User {
+    /**
+     * Batis does not use HIBERNATE.
+     * Therefore the standard annotations are not here required.
+     */
     //@Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name="userid")

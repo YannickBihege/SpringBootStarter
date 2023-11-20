@@ -1,6 +1,10 @@
 package com.udacity.jwdnd.course1.cloudstorage.form;
 
 public class LoginForm {
+    /**
+     * Accoring to Spring best practices, each form (formular) requires
+     * a corresponding bean. (Class)
+     */
     private String username;
     private String password;
 

@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class LoginController {
 
-    private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private UserService userService;
 
-    public LoginController(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, UserService userService) {
-        this.authenticationManager = authenticationManager;
+    public LoginController( UserDetailsService userDetailsService, UserService userService) {
         this.userDetailsService = userDetailsService;
         this.userService = userService;
     }
@@ -24,19 +22,20 @@ public class LoginController {
 
     @RequestMapping("/api/login")
     public String getLoginPage(@ModelAttribute("loginInput") LoginForm loginInput, Model model) {
-        model.addAttribute("loggedOut", false);
         return "login";
     }
 
     @PostMapping("/api/login")
     public String login(@ModelAttribute("loginInput") LoginForm loginInput, Model model) {
+        // TODO
+        boolean authenticationIsSuccessful = userService.authenticate(loginInput);
 
-        if (userService.authenticate(loginInput.getUsername(), loginInput.getPassword())) {
+        if (authenticationIsSuccessful) {
             model.addAttribute("invalidCredentials", false);
-            System.out.println("Authenticate");
+            model.addAttribute("loggedOut", false);
+
             return "redirect:/api/home";
         } else {
-            // Invalid username or password
             model.addAttribute("invalidCredentials", true);
             model.addAttribute("error", "Invalid username or password");
             return "login";

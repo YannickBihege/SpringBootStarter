@@ -3,6 +3,7 @@ package com.udacity.jwdnd.course1.cloudstorage.controller;
 
 import com.udacity.jwdnd.course1.cloudstorage.form.SignupForm;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
+import com.udacity.jwdnd.course1.cloudstorage.services.EncryptionService;
 import com.udacity.jwdnd.course1.cloudstorage.services.HashService;
 import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,13 @@ import java.util.Base64;
 public class SignupController {
     private final UserService userService;
     private final HashService hashService;
+   private final EncryptionService encryptionService;
 
 
-    public SignupController(UserService userService, HashService hashService) {
+    public SignupController(UserService userService, HashService hashService ,EncryptionService encryptionService ) {
         this.userService = userService;
         this.hashService = hashService;
+        this.encryptionService = encryptionService;
     }
 
     @GetMapping("/api/signup")
@@ -29,7 +32,7 @@ public class SignupController {
     }
 
     @PostMapping("/api/signup")
-    public String signupUser(@ModelAttribute("signupInput") SignupForm signupInput, Model model) {
+    public String signupUser(@ModelAttribute("signupInput") SignupForm signupInput, Model model) throws Exception {
         String signupError = null;
 
         if (!userService.isUsernameAvailable(signupInput.getUsername())) {
@@ -37,12 +40,15 @@ public class SignupController {
         }
 
         if (signupError == null) {
+
+            String encryptedPassword = encryptionService.encryptValue(signupInput.getPassword());
             SecureRandom random = new SecureRandom();
             byte[] salt = new byte[16];
             random.nextBytes(salt);
             String encodedSalt = Base64.getEncoder().encodeToString(salt);
-            String hashedPassword = hashService.getHashedValue(signupInput.getPassword(), encodedSalt);
-            int rowsAdded = userService.createUser(new User(null,signupInput.getUsername(), encodedSalt, hashedPassword, signupInput.getFirstName(), signupInput.getLastName()));
+
+
+            int rowsAdded = userService.saveUser(new User(null,signupInput.getUsername(), encodedSalt, encryptedPassword, signupInput.getFirstName(), signupInput.getLastName()));
             if (rowsAdded < 0) {
                 signupError = "There was an error signing you up. Please try again.";
             }

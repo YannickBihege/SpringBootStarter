@@ -6,6 +6,11 @@ You have been hired by Super*Duper*Drive, which is a brand new company aiming to
 3. **Password Management:** Save, edit, and delete website credentials.  
 
 Super*Duper*Drive wants you to focus on building the web application with the skills you acquired in this course. That means you are responsible for developing the server, website, and tests, but other tasks like deployment belong to other teams at the company. 
+## Spring Documentation
+
+https://docs.spring.io/spring-framework/docs/5.0.0.M5/spring-framework-reference/html/index.html
+https://docs.spring.io/spring-security/reference/5.7/servlet/authentication/passwords/jdbc.html
+https://docs.spring.io/spring-boot/docs/1.1.0.M1/reference/html/howto-database-initialization.html
 
 ## Starter Project
 A senior developer is assigned to be your tech lead and mentor, and they put together a starter project for you. It's a Maven project configured for all the dependencies the project requires, though you should feel free to add any additional dependencies you might require. [You can download or clone the starter repository here](https://github.com/udacity/nd035-c1-spring-boot-basics-project-starter/tree/master/starter/cloudstorage).

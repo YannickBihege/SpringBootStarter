@@ -14,22 +14,17 @@ public class CredentialService {
         this.credentialMapper = credentialMapper;
     }
 
-
-    public Credential getCredentialById(Integer credentialId) {
-        return credentialMapper.getCredentialById(credentialId);
+    public List<Credential> getCredentialsByUserId(String username) {
+        return credentialMapper.getCredentialsList(username);
     }
 
-    public Credential getCredentialByUsername(String username) {
+    public Credential getCredentialById(String username) {
         return credentialMapper.getCredentialByUsername(username);
     }
 
     public void insert(Credential credential) {
         credentialMapper.insert(credential);
     }
-    /*
-    public void insert(String url, String userName, String key, char []password, String userId) {
-        credentialMapper.insert(new Credential(url,userName,key,password, userId));
-    }*/
 
     public void update(Credential credential) {
         credentialMapper.update(credential);
