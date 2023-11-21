@@ -14,11 +14,11 @@ public class CredentialService {
         this.credentialMapper = credentialMapper;
     }
 
-    public List<Credential> getCredentialsByUserId(String username) {
-        return credentialMapper.getCredentialsList(username);
+    public List<Credential> getCredentialsByUserId(int userId) {
+        return credentialMapper.getCredentialsList(userId);
     }
 
-    public Credential getCredentialById(String username) {
+    public Credential getCredentialByUsername(String username) {
         return credentialMapper.getCredentialByUsername(username);
     }
 

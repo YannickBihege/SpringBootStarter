@@ -28,6 +28,11 @@ public class FileService {
                 file.getFileSize(), file.getUserId(), file.getFileData()));
     }
 
+    public File getFileByUserId(Integer userId) {
+        return fileMapper.getFileById(userId);
+    }
+
+
     public File getFileById(Integer fileId) {
         return fileMapper.getFileById(fileId);
     }

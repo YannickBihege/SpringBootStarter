@@ -29,7 +29,7 @@
    <h1 th:if="${#lists.size(greetings) > 5}">I think that's enough!</h1>
 
                 -->
-                <form action="#" method="POST">
+                <form th:action="@{/logout}"    method="POST">
                     <button type="submit" class="btn btn-secondary float-right">Logout</button>
                 </form>
             </div>

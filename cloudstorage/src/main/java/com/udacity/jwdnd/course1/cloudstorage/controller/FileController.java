@@ -1,6 +1,5 @@
 package com.udacity.jwdnd.course1.cloudstorage.controller;
 
-
 import com.udacity.jwdnd.course1.cloudstorage.model.File;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
@@ -11,17 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.InputStream;
 
-@Controller
-public class HomeController {
-
+public class FileController {
     @Autowired
     private UserService userService;
     @Autowired
@@ -31,27 +27,19 @@ public class HomeController {
     @Autowired
     private CredentialService credentialService;
 
-    /**
-     * Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-     *
-     * if (principal instanceof UserDetails) {
-     *   String username = ((UserDetails)principal).getUsername();
-     * } else {
-     *   String username = principal.toString();
-     * }
-     */
+
 
     // Get the authenticated user
     SecurityContext context = SecurityContextHolder.getContext();
     Authentication authentication = context.getAuthentication();
-    //String username = authentication.getName();
+    String username = authentication.getName();
 
-    //User user = userService.getUserByUsername(username);
-    //Integer userId = user.getUserId();
+    User user = userService.getUserByUsername(username);
+    Integer userId = user.getUserId();
 
 
     @Autowired
-    public HomeController(FileService fileService, NoteService noteService, CredentialService credentialService,
+    public FileController(FileService fileService, NoteService noteService, CredentialService credentialService,
                           UserService userService) {
         this.fileService = fileService;
         this.noteService = noteService;
@@ -59,19 +47,11 @@ public class HomeController {
         this.userService= userService;
     }
 
-    @RequestMapping("/api/home")
-    public String home(Model model) {
-        model.addAttribute("myvar", "File Note Handler");
-        // You can add any necessary model attributes here
+    @PostMapping("/api/home/file-upload")
+    public String handleFileUpload(@RequestParam("fileUpload") MultipartFile fileUpload, Model model) throws IOException {
 
-        /*
-        model.addAttribute("files", fileService.getFileByUserId(userId));
-        model.addAttribute("notes", noteService.getNotesByUserId(userId));
-        model.addAttribute("credentials", credentialService.getCredentialsByUserId(userId));
-        */
-
-
-        return "home"; //
+        fileService.createFile((File) fileUpload);
+        return "redirect:/home";
     }
 
 

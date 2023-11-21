@@ -44,13 +44,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
         http.formLogin()
                 .defaultSuccessUrl("/api/home", true);
+
     }
 
 
     @Bean
     public PasswordEncoder getPasswordEncoder(){return NoOpPasswordEncoder.getInstance();}
-
-
 
     }
 

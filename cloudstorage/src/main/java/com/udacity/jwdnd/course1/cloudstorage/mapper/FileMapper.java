@@ -10,6 +10,7 @@ public interface FileMapper {
     @Select("SELECT * FROM files WHERE userId = #{userId}")
     List<File> getFilesByUserId(Integer userId);
 
+
     @Select("SELECT * FROM files WHERE fileId = #{fileId}")
      File getFileById(Integer fileId);
 
