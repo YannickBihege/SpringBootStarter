@@ -30,10 +30,12 @@ public class AuthenticationService implements AuthenticationProvider
 
     private final UserMapper userMapper;
     private final HashService hashService;
+    private final EncryptionService encryptionService;
 
-    public AuthenticationService(UserMapper userMapper, HashService hashService) {
+    public AuthenticationService(UserMapper userMapper, HashService hashService, EncryptionService encryptionService) {
         this.userMapper = userMapper;
         this.hashService = hashService;
+        this.encryptionService = encryptionService;
     }
 
 
@@ -46,6 +48,7 @@ public class AuthenticationService implements AuthenticationProvider
         if (user != null) {
             String encodedSalt = user.getSalt();
             String hashedPassword = hashService.getHashedValue(password, encodedSalt);
+            String encryptedPassword = encryptionService.encryptValue(password,e)
             if (user.getPassword().equals(hashedPassword)) {
                 // Arraylist grants a set of permission.
                 return new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());

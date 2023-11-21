@@ -2,6 +2,7 @@ package com.udacity.jwdnd.course1.cloudstorage.config;
 
 
 import com.udacity.jwdnd.course1.cloudstorage.model.Note;
+import com.udacity.jwdnd.course1.cloudstorage.services.AuthenticationService;
 import com.udacity.jwdnd.course1.cloudstorage.services.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,12 +20,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig  extends WebSecurityConfigurerAdapter {
-    @Autowired
-    UserDetailsService userDetailsService;
+    private AuthenticationService authenticationService;
+
+    public SecurityConfig(AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(this.authenticationService);
     }
 
 
@@ -44,6 +48,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
         http.formLogin()
                 .defaultSuccessUrl("/api/home", true);
+        http.logout();
 
     }
 
