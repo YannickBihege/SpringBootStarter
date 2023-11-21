@@ -24,7 +24,6 @@
     <form th:action="@{/api/signup}" action="#" th:object="${signupInput}" method="POST">
 
         <div th:if="${signupSuccess}" class="success-message">
-        <!--    <p th:text="${signupSuccess}"> -->
             <div id="success-msg" class="alert alert-dark">
                 You successfully signed up! Please continue to the <a>login</a> page.
             </div>
@@ -33,7 +32,7 @@
         <div th:if="${signupError}" class="error-message">
             <p th:text="${signupError}">
             <div class="alert alert-danger">
-                <span>Example Signup Error Message</span>
+                <span>Signup Error Message</span>
             </div>
             </p>
         </div>

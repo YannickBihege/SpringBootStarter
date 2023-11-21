@@ -1,8 +1,9 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
-import com.udacity.jwdnd.course1.cloudstorage.form.LoginForm;
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
+import com.udacity.jwdnd.course1.cloudstorage.security.EncryptionService;
+import com.udacity.jwdnd.course1.cloudstorage.security.HashService;
 import org.springframework.stereotype.Service;
 
 
@@ -23,8 +24,9 @@ public class UserService {
 
     private final HashService hashService;
     private final EncryptionService encryptionService;
-
     private final static String encryptionKey = "key";
+
+
 
     public UserService(UserMapper userMapper, HashService hashService, EncryptionService encryptionService) {
         this.userMapper = userMapper;
@@ -60,17 +62,6 @@ public class UserService {
         userMapper.delete(userId);
     }
 
-
-    public boolean authenticate(LoginForm loginInput) {
-        User user = userMapper.getUser(loginInput.getUsername());
-
-        if (user != null) {
-            String encryptedPassword = encryptionService.encryptValue(loginInput.getPassword(),encryptionKey, user.getSalt());
-            String persistedPasswordEncrypted = encryptionService.encryptValue(user.getPassword(),encryptionKey, user.getSalt());
-            return encryptedPassword.equals(persistedPasswordEncrypted);
-        }
-        return false;
-    }
 
 
 }

@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class FileService {
     public final Logger logger = LoggerFactory.getLogger(FileService.class);
-
     private final UserService userService;
-
 
     private final FileMapper fileMapper;
 

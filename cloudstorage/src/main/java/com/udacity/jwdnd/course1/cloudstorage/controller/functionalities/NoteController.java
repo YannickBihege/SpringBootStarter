@@ -1,6 +1,5 @@
-package com.udacity.jwdnd.course1.cloudstorage.controller;
+package com.udacity.jwdnd.course1.cloudstorage.controller.functionalities;
 
-import com.udacity.jwdnd.course1.cloudstorage.model.File;
 import com.udacity.jwdnd.course1.cloudstorage.model.User;
 import com.udacity.jwdnd.course1.cloudstorage.services.CredentialService;
 import com.udacity.jwdnd.course1.cloudstorage.services.FileService;
@@ -13,11 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.time.Instant;
 
-public class FileController {
+public class NoteController {
     @Autowired
     private UserService userService;
     @Autowired
@@ -26,7 +24,6 @@ public class FileController {
     private NoteService noteService;
     @Autowired
     private CredentialService credentialService;
-
 
 
     // Get the authenticated user
@@ -38,21 +35,37 @@ public class FileController {
     Integer userId = user.getUserId();
 
 
-    @Autowired
-    public FileController(FileService fileService, NoteService noteService, CredentialService credentialService,
+    public NoteController(FileService fileService, NoteService noteService, CredentialService credentialService,
                           UserService userService) {
         this.fileService = fileService;
         this.noteService = noteService;
         this.credentialService= credentialService;
         this.userService= userService;
     }
+    @PostMapping("/api/home/addNote")
+    public String addNote(@RequestParam String noteTitle, @RequestParam String noteDescription, Model model) {
+        // Handle adding a new note here, e.g., save to a database
+        // Redirect back to the home page or show a success message
+        // insert notettitle, notedescription and userid
+        //noteService.createOrUpdate(new Note(1,noteTitle,noteDescription,1));
+        model.addAttribute("Timestamp", Instant.now().toString());
 
-    @PostMapping("/api/home/file-upload")
-    public String handleFileUpload(@RequestParam("fileUpload") MultipartFile fileUpload, Model model) throws IOException {
-
-        fileService.createFile((File) fileUpload);
         return "redirect:/home";
     }
 
+    @PostMapping("/api/home/editNote")
+    public String editNote(@RequestParam Long noteId, @RequestParam String noteTitle, @RequestParam String noteDescription) {
+        // Handle editing a note here, e.g., update in the database
+        // Redirect back to the home page or show a success message
+        return "redirect:/home";
+    }
+
+    @PostMapping("/api/home/deleteNote")
+    public String deleteNote(@RequestParam Long noteId) {
+        // Handle deleting a note here, e.g., remove from the database
+        // Redirect back to the home page or show a success message
+        noteService.delete(Math.toIntExact(noteId));
+        return "redirect:/home";
+    }
 
 }

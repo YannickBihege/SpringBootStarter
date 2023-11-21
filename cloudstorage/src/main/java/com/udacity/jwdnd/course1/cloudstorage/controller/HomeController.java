@@ -42,12 +42,20 @@ public class HomeController {
      */
 
     // Get the authenticated user
-    SecurityContext context = SecurityContextHolder.getContext();
-    Authentication authentication = context.getAuthentication();
+    //SecurityContext context = SecurityContextHolder.getContext();
+    //Authentication authentication = context.getAuthentication();
     //String username = authentication.getName();
 
     //User user = userService.getUserByUsername(username);
     //Integer userId = user.getUserId();
+
+    private User getPrincipal(){
+        User user = null;
+        if(SecurityContextHolder.getContext().getAuthentication() instanceof User){
+            user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        }
+        return user;
+    }
 
 
     @Autowired
@@ -59,17 +67,15 @@ public class HomeController {
         this.userService= userService;
     }
 
-    @RequestMapping("/api/home")
+    @GetMapping("/api/home")
     public String home(Model model) {
-        model.addAttribute("myvar", "File Note Handler");
+        model.addAttribute("title", "File Note Handler");
         // You can add any necessary model attributes here
-
         /*
         model.addAttribute("files", fileService.getFileByUserId(userId));
         model.addAttribute("notes", noteService.getNotesByUserId(userId));
         model.addAttribute("credentials", credentialService.getCredentialsByUserId(userId));
         */
-
 
         return "home"; //
     }
