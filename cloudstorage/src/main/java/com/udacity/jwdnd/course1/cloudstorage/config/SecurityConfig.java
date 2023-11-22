@@ -28,15 +28,14 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(this.authenticationService);
+        auth.authenticationProvider(this.authenticationService);// Use my authentication service.
     }
-
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /**
-         * Corresponds to the authorizations
+         * Corresponds to the authorizations requests.
          */
         http.authorizeRequests()
                 .antMatchers("/api/signup", "/css/**", "/js/**").permitAll()

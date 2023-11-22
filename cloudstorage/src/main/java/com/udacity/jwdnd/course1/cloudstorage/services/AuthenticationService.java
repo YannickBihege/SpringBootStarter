@@ -1,4 +1,4 @@
-package com.udacity.jwdnd.course1.cloudstorage.security;
+package com.udacity.jwdnd.course1.cloudstorage.services;
 
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
@@ -53,7 +53,6 @@ public class AuthenticationService implements AuthenticationProvider
             String encodedSalt = user.getSalt(); // Database
             String encryptedPassword = encryptionService.encryptValue(password,encryptionKey,encodedSalt);
             if (user.getPassword().equals(encryptedPassword)) {
-                // The arraylist is a set of permission.
                 return new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>());
             }
         }
@@ -62,8 +61,8 @@ public class AuthenticationService implements AuthenticationProvider
 
 
     @Override
-    public boolean supports(Class<?> aClass) {
-        return false;
+    public boolean supports(Class<?> authentication) {
+        return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 
 

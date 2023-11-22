@@ -61,16 +61,7 @@ public class UserService {
     }
 
 
-    public boolean authenticate(LoginForm loginInput) {
-        User user = userMapper.getUser(loginInput.getUsername());
 
-        if (user != null) {
-            String encryptedPassword = encryptionService.encryptValue(loginInput.getPassword(),encryptionKey, user.getSalt());
-            String persistedPasswordEncrypted = encryptionService.encryptValue(user.getPassword(),encryptionKey, user.getSalt());
-            return encryptedPassword.equals(persistedPasswordEncrypted);
-        }
-        return false;
-    }
 
 
 }
