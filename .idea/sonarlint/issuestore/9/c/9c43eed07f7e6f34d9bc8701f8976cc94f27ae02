@@ -1,16 +1,0 @@
-
-t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÚù£ùÿÿÿÿ
-`
-java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ÙÚù£ùÿÿÿÿ
-q
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(ÙüØ‹8´¥¼­¿1
-q
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(¬ˆŒ8´¥¼­¿1
-I
-java:S1128"-Remove this unused import 'org.slf4j.Logger'.(íØ®68°­îÉ¿1
-Q
-java:S1128	"4Remove this unused import 'org.slf4j.LoggerFactory'.(–ÿÚŞ8°­îÉ¿1
-{
-java:S1128"YRemove this unused import 'org.springframework.security.crypto.password.PasswordEncoder'.(‰¡ßáÿÿÿÿÿ8´¥¼­¿1
-J
-java:S1068"/Remove this unused "hashService" private field.(Ùæ¬“ÿÿÿÿÿ
