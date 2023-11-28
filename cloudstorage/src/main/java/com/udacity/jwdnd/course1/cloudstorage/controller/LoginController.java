@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
+
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
 @Controller
 public class LoginController {
@@ -34,6 +36,14 @@ public class LoginController {
         this.authenticatedUserService = authenticatedUserService;
     }
 
+    @RolesAllowed("ADMIN")
+    @RequestMapping("/admin")
+    public String adminHello() {
+        return "Hello Admin";
+    }
+
+
+    @RolesAllowed("USER")
     @RequestMapping("/api/login")
     public String getLoginPage(Model model, @ModelAttribute("loginInput") LoginForm loginInput) {
         model.addAttribute("loggedOut", false);
