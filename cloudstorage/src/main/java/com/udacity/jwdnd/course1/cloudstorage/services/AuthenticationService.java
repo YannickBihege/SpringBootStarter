@@ -21,15 +21,7 @@ import java.util.ArrayList;
 @Service
 public class AuthenticationService implements AuthenticationProvider
 {
-    /**
-     The class is provided by the nanodegree course.
-     However it needs to be adapted in order to
-     decrypt the given value
-     String encryptedPassword = encryptionService.encryptValue(signupInput.getPassword(),encryptionKey,encodedSalt);
 
-     */
-
-    private final Logger logger = LoggerFactory.getLogger(AuthenticationService.class);
     private final UserMapper userMapper;
     private final HashService hashService;
     private final EncryptionService encryptionService;

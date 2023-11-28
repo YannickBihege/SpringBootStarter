@@ -1,0 +1,9 @@
+
+g	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Î‡Ô«ùÿÿÿÿ8Ýò¶œ¿1
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÙÚù£ùÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ÙÚù£ùÿÿÿÿ
+Ž
+java:S1130&"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(Î‡Ô«ùÿÿÿÿ8ãò¶œ¿1
+J
+java:S1068"/Remove this unused "hashService" private field.(Ùæ¬“ÿÿÿÿÿ
