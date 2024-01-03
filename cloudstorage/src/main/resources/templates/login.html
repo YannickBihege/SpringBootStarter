@@ -17,15 +17,12 @@
             <h1 class="display-5">Login files handler</h1>
             <form  th:action="@{/api/login}" action="#" th:object="${loginInput}" method="POST">
 
+
                 <div th:if="${invalidCredentials}"  class="alert alert-danger">
-                    <p th:text="${invalidCredentials}"> <span> Invalid username or password </span>
+                    <p th:text="${loginError}"> <span> Invalid username or password </span>
                     </p>
-
                 </div>
 
-                <div th:if="${loggedOut}" class="alert alert-dark">
-                    You have been logged out
-                </div>
                 <div class="form-group">
                     <label for="inputUsername">Username</label>
                     <input type="text" th:field="*{username}" class="form-control" name="username" id="inputUsername" placeholder="Enter Username" maxlength="20" required>

@@ -1,0 +1,14 @@
+
+`	java:S112""FDefine and throw a dedicated exception instead of using a generic one.(İ‘«Íúÿÿÿÿ
+`	java:S112."FDefine and throw a dedicated exception instead of using a generic one.(Ïí¸—úÿÿÿÿ
+Z	java:S112:"FDefine and throw a dedicated exception instead of using a generic one.(¬ÆÊ3
+m
+java:S2139 "XEither log this exception and handle it, or rethrow it with some contextual information.(…³”
+1
+java:S5542("Use a secure padding scheme.(©ù1
+n
+java:S2139,"XEither log this exception and handle it, or rethrow it with some contextual information.(”ı¾
+1
+java:S55424"Use a secure padding scheme.(©ù1
+n
+java:S21398"XEither log this exception and handle it, or rethrow it with some contextual information.(”ı¾

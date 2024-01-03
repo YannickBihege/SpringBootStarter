@@ -13,23 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 public class NoteController {
-    @Autowired
     private UserService userService;
-    @Autowired
     private FileService fileService;
-    @Autowired
     private NoteService noteService;
-    @Autowired
     private CredentialService credentialService;
-
-
-    // Get the authenticated user
-    SecurityContext context = SecurityContextHolder.getContext();
-    Authentication authentication = context.getAuthentication();
-    String username = authentication.getName();
-
-    User user = userService.getUserByUsername(username);
-    Integer userId = user.getUserId();
 
 
     public NoteController(FileService fileService, NoteService noteService, CredentialService credentialService,

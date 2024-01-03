@@ -7,6 +7,8 @@ import javax.persistence.Id;
 
 public class Credential {
 
+    @Id
+    @GeneratedValue
     private Integer credentialId;
     private String url;
     private String userName;
@@ -14,12 +16,6 @@ public class Credential {
     private String password;
     private String userId;
 
-    public Credential(String url, String userName, String key, String password, String userId) {
-    }
-
-    public Credential() {
-
-    }
 
     public Integer getCredentialId() {
         return credentialId;

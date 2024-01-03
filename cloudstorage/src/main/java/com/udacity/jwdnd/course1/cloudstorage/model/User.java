@@ -22,12 +22,10 @@ public class User {
     private String salt;
     //@Column(name="password")
     private String password;
-
     //@Column(name="firstName")
     private String firstName;
     // @Column(name="lastName")
     private String lastName;
-
     public User(Integer userId, String username, String salt, String password, String firstName, String lastName) {
         this.userId = userId;
         this.username = username;

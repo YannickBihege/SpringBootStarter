@@ -18,17 +18,7 @@
         <div class="container">
             <div id="logoutDiv">
                 <h1 th:text="${myvar}"> File Handler</h1>
-                <!--
-                <h2  th:each="msg : ${greetings}"
-                th:text="${msg}">Hello, homepage!
-                </h2>
-                <h2
-                th:unless="${msg.contains('goodbye')}"
-                th:text="${msg}">Hello, homepage!</h2>
-                 <h1 th:unless="${#lists.size(greetings) > 5}" th:each="msg : ${greetings}" th:text="${msg}">Hello, homepage!</h1>
-   <h1 th:if="${#lists.size(greetings) > 5}">I think that's enough!</h1>
 
-                -->
                 <form th:action="@{/logout}"    method="POST">
                     <button type="submit" class="btn btn-secondary float-right">Logout</button>
                 </form>

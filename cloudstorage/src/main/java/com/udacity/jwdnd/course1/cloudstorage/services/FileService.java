@@ -1,7 +1,6 @@
 package com.udacity.jwdnd.course1.cloudstorage.services;
 
 import com.udacity.jwdnd.course1.cloudstorage.mapper.FileMapper;
-import com.udacity.jwdnd.course1.cloudstorage.mapper.UserMapper;
 import com.udacity.jwdnd.course1.cloudstorage.model.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ public class FileService {
 
     public int createFile(File file) {
 
-        return fileMapper.insert(new File(null, file.getFileName(), file.getFileType(),
+        return fileMapper.insert(new File(null, file.getFileName(), file.getContentType(),
                 file.getFileSize(), file.getUserId(), file.getFileData()));
     }
 

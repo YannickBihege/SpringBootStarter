@@ -22,7 +22,6 @@ public class SignupController {
     private final static String encryptionKey = "key";
 
 
-
     public SignupController(UserService userService, HashService hashService ,EncryptionService encryptionService ) {
         this.userService = userService;
         this.hashService = hashService;

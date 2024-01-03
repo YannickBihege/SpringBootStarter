@@ -18,27 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 public class FileController {
-    @Autowired
     private UserService userService;
-    @Autowired
     private FileService fileService;
-    @Autowired
     private NoteService noteService;
-    @Autowired
     private CredentialService credentialService;
 
-
-
-    // Get the authenticated user
-    SecurityContext context = SecurityContextHolder.getContext();
-    Authentication authentication = context.getAuthentication();
-    String username = authentication.getName();
-
-    User user = userService.getUserByUsername(username);
-    Integer userId = user.getUserId();
-
-
-    @Autowired
     public FileController(FileService fileService, NoteService noteService, CredentialService credentialService,
                           UserService userService) {
         this.fileService = fileService;

@@ -19,17 +19,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class HomeController {
 
-    @Autowired
     private UserService userService;
-    @Autowired
     private FileService fileService;
-    @Autowired
     private NoteService noteService;
-    @Autowired
     private CredentialService credentialService;
 
     private final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
 
 
     @Autowired
@@ -41,51 +36,9 @@ public class HomeController {
         this.userService= userService;
     }
 
-    /*
-    @RequestMapping("/api/home")
-    public String home(Model model, Authentication authentication) {
-        model.addAttribute("myvar", "File Note Handler");
-
-        String loggedInUserName = (String) authentication.getPrincipal();
-        User user = userService.getUserByUsername(loggedInUserName);
-        int userId = user.getUserId();
-        // You can add any necessary model attributes here
-        model.addAttribute("files", fileService.getFileByUserId(userId));
-        model.addAttribute("notes", noteService.getNotesByUserId(userId));
-        model.addAttribute("credentials", credentialService.getCredentialsByUserId(userId));
-
-        return "home"; //
-    }
-    */
 
     @GetMapping("/api/home")
     public String signupView(@ModelAttribute("loginInput") LoginForm loginInput, Model model) {
-        return "home";
-    }
-
-
-    @PostMapping("/api/login")
-    public String login(Authentication authentication, Model model, @ModelAttribute("loginInput") LoginForm loginInput) {
-        String loggedInUserName = (String) authentication.getPrincipal();
-        User user = userService.getUserByUsername(loggedInUserName);
-
-        logger.info("loggedInUserName"+loggedInUserName);
-        logger.info("user"+ user.toString());
-
-
-        String username = loginInput.getUsername();
-        String password = loginInput.getPassword();
-        model.addAttribute("username",username);
-        model.addAttribute("password",password);
-        int userId = user.getUserId();
-        logger.info("userId" +userId);
-
-
-        // You can add any necessary model attributes here
-        model.addAttribute("files", fileService.getFileByUserId(userId));
-        model.addAttribute("notes", noteService.getNotesByUserId(userId));
-        model.addAttribute("credentials", credentialService.getCredentialsByUserId(userId));
-
         return "home";
     }
 

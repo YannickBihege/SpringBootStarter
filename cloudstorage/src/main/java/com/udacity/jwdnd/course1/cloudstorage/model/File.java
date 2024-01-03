@@ -10,7 +10,7 @@ public class File {
     @GeneratedValue
     private int fileId;
     private String fileName;
-    private String fileType;
+    private String contentType;
     private long fileSize;
     private int userId;
     private byte[] fileData;
@@ -20,16 +20,16 @@ public class File {
     public File() {
     }
 
-    public File(int fileId, String fileName, String fileType, long fileSize, int userId, byte[] fileData) {
+    public File(int fileId, String fileName, String contentType, long fileSize, int userId, byte[] fileData) {
         this.fileId = fileId;
         this.fileName = fileName;
-        this.fileType = fileType;
+        this.contentType = contentType;
         this.fileSize = fileSize;
         this.userId = userId;
         this.fileData = fileData;
     }
 
-    public File(Integer integer, String fileName, String fileType, long fileSize, int userId, byte[] fileData) {
+    public File(Integer integer, String fileName, String contentType, long fileSize, int userId, byte[] fileData) {
     }
 
     public int getFileId() {
@@ -48,12 +48,12 @@ public class File {
         this.fileName = fileName;
     }
 
-    public String getFileType() {
-        return fileType;
+    public String getContentType() {
+        return contentType;
     }
 
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
+    public void setContentType(String fileType) {
+        this.contentType = fileType;
     }
 
     public long getFileSize() {
